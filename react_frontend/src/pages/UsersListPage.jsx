@@ -1,18 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 export const UsersListPage = () => {
-    let [users, setUsers] = useState(null)
+    const [post, setPosts] = useState(null)
     useEffect(() => {
-        getUsers()
+        axios.get('http://localhost:8000/api/').then((post) => {
+           setPosts(post)
+    })
     }, [])
 
-    let getUsers = () => { axios.get(url).then((response) => {
-        setUsers(response.data)
-    })
-}
+    if (!post) return null
+//     const getPosts = async () => { await axios.get('http://localhost:8000/api/').then((response) => {
+//        data = setPosts(response.data)
+//     })
+// }
 
-    if (!users) return null
+    if (!post) return null
   return (
-    <div>Users</div>
+    <>
+        {post.data.map((post, id) => (
+        <ul key={id}>
+            <li>{post.user}</li>
+            <li>{post.subject}</li>
+            <li>{post.content}</li>
+            
+        </ul> 
+        ))}
+    </>
+    
   )
 }
