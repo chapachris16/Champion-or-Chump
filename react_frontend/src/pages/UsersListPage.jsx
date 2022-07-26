@@ -9,12 +9,6 @@ export const UsersListPage = () => {
     }, [])
 
     if (!post) return null
-//     const getPosts = async () => { await axios.get('http://localhost:8000/api/').then((response) => {
-//        data = setPosts(response.data)
-//     })
-// }
-
-    if (!post) return null
   return (
     <>
         {post.data.map((post, id) => (
